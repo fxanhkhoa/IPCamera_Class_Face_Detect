@@ -1,0 +1,4 @@
+images/group_2/6.jpg
+images/group_2/7.jpg
+images/group_1/4.jpg
+images/group_1/1.jpg
