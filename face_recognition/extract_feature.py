@@ -33,6 +33,9 @@ def extract_features(src):
                 feature = []
                 print("[+] Extract feature from image : ", img_path)
                 dets = detector(img_data, 1)
+
+                # Extract feature for one face in one image, if you want to train multi-face
+                # in one image, please modify this code by renaming save_path.
                 for k, d in enumerate(dets):
                     shape = sp(img_data, d)
                     face_chip = dlib.get_face_chip(img_data, shape)
