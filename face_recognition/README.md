@@ -67,7 +67,7 @@ It will create result.txt in folder result/db1. This file is the label result af
 ## 6. Testing with your owm image:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/face_recognition.py) to predict your owm image with trained model. The syntax as following:
 ```
-python3 face_recognization.py <PATH_OF_IMAGE> result/db1
+python3 face_recognition.py <PATH_OF_IMAGE> result/db1
 ```
 It will show label of face on image.
 ## 7. Streaming realtime from camera:
