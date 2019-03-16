@@ -28,6 +28,7 @@ face_recognition
 -extract_feature.py
 -generate_db.py
 -face_recognition.py
+-real_time_face_recognition.py
 -train.py
 -test.py
 -save.py
@@ -81,9 +82,9 @@ python3 face_recognition.py <PATH_OF_IMAGE> result/db1
 ```
 It will show label of face on image.
 ## 8. Streaming realtime from camera:
-Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/real_time_face_recognition.py) to stream from camera and pass into trained model. The syntax as following:
+Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/real_time_face_recognition.py) to stream from camera and pass into trained model (default cam 0). The syntax as following:
 ```
-python3 real_time_face_recognition.py result/db1
+python3 real_time_face_recognition.py <address> result/db1
 ```
 
 # References
@@ -93,3 +94,5 @@ python3 real_time_face_recognition.py result/db1
 
 * [Support Vector Machines with scikit-learn](https://www.datacamp.com/community/tutorials/svm-classification-scikit-learn-python)
 * [Support Vector Machines](http://scikit-learn.org/stable/modules/svm.html)
+* [Modern Face Recognition with Deep Learning](https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78)
+* [Facial landmark](https://blog.vietnamlab.vn/2018/04/24/dlib-phan-2-xac-dinh-facial-landmark-voi-dlib-va-python-2/)
