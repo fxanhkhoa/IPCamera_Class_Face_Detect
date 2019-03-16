@@ -30,7 +30,7 @@ def extract_features(src):
                 save_path = img_path.replace("images", "features").replace(".jpg", ".npy")            
                       
                 img_data = cv2.imread(img_path)
-                feature = []
+                # feature = []
                 print("[+] Extract feature from image : ", img_path)
                 dets = detector(img_data, 1)
 
@@ -40,9 +40,9 @@ def extract_features(src):
                     shape = sp(img_data, d)
                     face_chip = dlib.get_face_chip(img_data, shape)
                     face_descriptor = facerec.compute_face_descriptor(face_chip)
-                    feature.append(face_descriptor)
-
-                save_feature(save_path, feature)
+                    # feature.append(face_descriptor)
+                    save_feature(save_path, face_descriptor)
+                
             
 
 if __name__=="__main__":

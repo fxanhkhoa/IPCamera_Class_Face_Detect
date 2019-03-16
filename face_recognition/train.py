@@ -15,13 +15,13 @@ def load_features(src):
             #print("[+] Read image  : ", img_path," id : ", i)
             if os.path.isfile(img_path) and img_path.find(".jpg") != -1:            
                 save_path = img_path.replace("images", "features").replace(".jpg", ".npy")        
-     
-                lb = save_path.split("/")[1]
-                # lb1 = lb.split(".")[1]
-                # print (lb)
-                # print(save_path)
-                data.append(np.load(save_path)[0])
-                label.append(lb)
+                if os.path.isfile(save_path):
+                    lb = save_path.split("/")[1]
+                    # lb1 = lb.split(".")[1]
+                    # print (lb)
+                    # print(save_path)
+                    data.append(np.load(save_path))
+                    label.append(lb)
     print("[+] Load data finished")
     return data, label
 

@@ -19,15 +19,18 @@ face_recognition
 --...
 -feature
 --face classes
+-save
+--face classes
 -images
 --face classes
 -test
 --test image
--extract_features.py
+-extract_feature.py
 -generate_db.py
 -face_recognition.py
 -train.py
 -test.py
+-save.py
 -weight
 --dlib_face_recognition_resnet_model_v1.dat
 --shape_predictor_68_face_landmarks.dat
@@ -35,42 +38,49 @@ face_recognition
 # Usage
 ----
 ## 1. Face dataset:
-Click this [link]() to download face dataset, extract it and put into folder images.
+Click this [link](https://drive.google.com/file/d/1q8EXJY_OPPjIUgsNyIB09eFpZgYW123v/view?usp=sharing) to download face dataset, extract it and put into folder images.
 ## 2. Generate training set and test set:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/generate_db.py) to generate training set and test set as following command:
 ```
 python3 generate_db.py images db/db1
 ```
 It will create train.txt and test.txt in folder db/db1
-## 3. Feature extraction:
+## 3. Data filtering:
+Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/save.py) to filter training set and test set as following command:
+```
+python3 save.py db/db1/train.txt 
+python3 save.py db/db1/test.txt
+```
+It will detect the face in all images and write into save folder, you can check and remove which image not well in your dataset.
+## 4. Feature extraction:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/extract_feature.py) to extract feature of images. The systax as following:
 #### To extract feature of training set:
 ```
-python3 extract_features.py db/db1/train.txt
+python3 extract_feature.py db/db1/train.txt
 ```
 #### To extract feature of test set:
 ```
-python3 extract_features.py db/db1/test.txt
+python3 extract_feature.py db/db1/test.txt
 ```
-## 4. Training:
+## 5. Training:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/train.py) to train model with SVM linear algorithm. The syntax as following:
 ```
 python3 train.py db/db1/train.txt db/db1/test.txt result/db1
 ```
 It will create model.joblib in folder result/db1.
-## 5. Testing:
+## 6. Testing:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/test.py) to test model. The syntax as following:
 ```
 python3 test.py db/db1/test.txt result/db1
 ```
 It will create result.txt in folder result/db1. This file is the label result after using trained model to recognize.
-## 6. Testing with your owm image:
+## 7. Testing with your owm image:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/face_recognition.py) to predict your owm image with trained model. The syntax as following:
 ```
 python3 face_recognition.py <PATH_OF_IMAGE> result/db1
 ```
 It will show label of face on image.
-## 7. Streaming realtime from camera:
+## 8. Streaming realtime from camera:
 Using [this script](https://github.com/fxanhkhoa/IPCamera_Class_Face_Detect/blob/master/face_recognition/real_time_face_recognition.py) to stream from camera and pass into trained model. The syntax as following:
 ```
 python3 real_time_face_recognition.py result/db1
