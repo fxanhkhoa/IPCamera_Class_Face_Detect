@@ -6,6 +6,7 @@ import numpy as np
 import sys
 import dlib 
 import os
+import time
 
 # Avoid kmp duplicate errors
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -43,7 +44,9 @@ def face_emotion_recognize(image_path):
         roi = roi.astype("float") / 255.0
         roi = img_to_array(roi)
         roi = np.expand_dims(roi, axis=0)
+        start = time.time()
         preds = emotion_classifier.predict(roi)[0]
+        print(time.time() - start)
         emotion_probability = np.max(preds)
         print(emotion_probability)
         label = EMOTIONS[preds.argmax()]
