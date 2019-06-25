@@ -40,21 +40,22 @@ def face_emotion_recognize(image_path):
     for k, d in enumerate(dets):
         (x, y, w, h) = dlib_to_opencv(d)
         roi = frame[y:y + h, x:x + w]
-        roi = cv2.resize(roi, (48, 48))
-        roi = roi.astype("float") / 255.0
-        roi = img_to_array(roi)
-        roi = np.expand_dims(roi, axis=0)
-        start = time.time()
-        preds = emotion_classifier.predict(roi)[0]
-        print(time.time() - start)
-        emotion_probability = np.max(preds)
-        print(emotion_probability)
-        label = EMOTIONS[preds.argmax()]
-        # print(label)
-        startX = x
-        startY = y - 15 if y - 15 > 15 else y + 15
-        cv2.putText(img, label, (startX, startY), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-        cv2.rectangle(img, (x, y), (x + w, y + h),(0, 0, 255), 2)
+        if (roi.shape[0] != 0) and (roi.shape[1]!= 0):
+            roi = cv2.resize(roi, (48, 48))
+            roi = roi.astype("float") / 255.0
+            roi = img_to_array(roi)
+            roi = np.expand_dims(roi, axis=0)
+            start = time.time()
+            preds = emotion_classifier.predict(roi)[0]
+            print(time.time() - start)
+            emotion_probability = np.max(preds)
+            print(emotion_probability)
+            label = EMOTIONS[preds.argmax()]
+            # print(label)
+            startX = x
+            startY = y - 15 if y - 15 > 15 else y + 15
+            cv2.putText(img, label, (startX, startY), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            cv2.rectangle(img, (x, y), (x + w, y + h),(0, 0, 255), 2)
         
     cv2.imshow('Emotion', img)
     cv2.waitKey(0)
